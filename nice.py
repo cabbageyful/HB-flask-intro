@@ -49,8 +49,13 @@ def say_hello():
             <option value="great">You're great!</option>
             <option value="smart">You're smart!</option>
             <option value="talented">You're talented!</option>
-            <option value="special">You're special!
-          </select>
+            <option value="special">You're special!</option>
+          </select><br>
+          How are you feeling today? 
+          <label><input type="checkbox" name="feelings" value="happy">Happy</label>
+          <label><input type="checkbox" name="feelings" value="sad">Sad</label>
+          <label><input type="checkbox" name="feelings" value="meh">Meh</label><br>
+      
           <input type="submit">
         </form>
       </body>
@@ -66,6 +71,8 @@ def greet_person():
 
     compliment = request.args.get("compliment")
 
+    feelings = request.args.get("feelings")
+
     return """
     <!doctype html>
     <html>
@@ -73,10 +80,10 @@ def greet_person():
         <title>A Compliment</title>
       </head>
       <body>
-        Hi %s I think you're %s!
+        Hi %s, I think you're %s! I'm %s, you're %s.
       </body>
     </html>
-    """ % (player, compliment)
+    """ % (player, compliment, feelings, feelings)
 
 
 if __name__ == '__main__':
